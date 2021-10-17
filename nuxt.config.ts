@@ -25,7 +25,10 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   css: ['@/assets/style/common.styl', '@mdi/font/css/materialdesignicons.css'],
-  plugins: [{ src: '~plugins/snackbar', ssr: false }],
+  plugins: [
+    { src: '~plugins/snackbar', ssr: false },
+    { src: '~plugins/ethereum', ssr: false },
+  ],
   components: true,
   buildModules: ['@nuxt/typescript-build'],
   modules: [

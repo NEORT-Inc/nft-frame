@@ -38,6 +38,7 @@
         <SignInModal v-if="shouldShowSignInModel" :hide-close-button="true" />
         <SignUpModal v-if="shouldShowSignUpModel" :hide-close-button="true" />
       </div>
+      <WalletConnect />
     </client-only>
   </div>
 </template>
@@ -52,9 +53,11 @@ import PlaylistArts from '~/components/PlaylistArts.vue'
 import SignInModal from '~/components/SignInModal.vue'
 import SignUpModal from '~/components/SignUpModal.vue'
 import A from '~/basics/A.vue'
+import WalletConnect from '~/components/WalletConnect.vue'
 
 @Component({
   components: {
+    WalletConnect,
     A,
     Playlists,
     ArtMedia,
