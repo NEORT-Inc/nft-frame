@@ -1,0 +1,33 @@
+{
+    "name": "nft-frame-app",
+    "version": "0.1.2",
+    "description": "NFT Frame App",
+    "author": "NEORT",
+    "license": "MIT",
+    "main": "index.js",
+    "build": {
+        "productName": "NFT Frame",
+        "appId": "io.nft.app",
+        "mac": {
+            "icon": "icons/icon.icns"
+        },
+        "win": {
+            "icon": "icons/icon.ico"
+        }
+    },
+    "scripts": {
+        "start": "cross-env NODE_ENV=local electron .",
+        "start-dev": "cross-env NODE_ENV=development electron .",
+        "start-stg": "cross-env NODE_ENV=staging electron .",
+        "package-mac": "electron-builder --mac --x64",
+        "package-win32": "electron-builder --win --ia32",
+        "package-win": "electron-builder --win --x64",
+        "package-pi": "electron-builder --linux --armv7l",
+        "package": "yarn run package-mac && yarn run package-win"
+    },
+    "devDependencies": {
+        "cross-env": "^5.2.0",
+        "electron": "^13.1.5",
+        "electron-builder": "^22.11.7"
+    }
+}
