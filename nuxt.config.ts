@@ -10,7 +10,7 @@ const ENV =
     ? ENV_DEV
     : ENV_PRD
 export default {
-  mode: 'universal',
+  ssr: true,
   srcDir: 'web/',
   head: {
     title: 'nft-frame',
