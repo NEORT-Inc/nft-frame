@@ -1,7 +1,7 @@
 export const ENV_DEV = {
   PROJECT_ENV: process.env.PROJECT_ENV || '',
   APP_NAME: 'NFT Frame dev',
-  BASE_URL: 'http://localhost:3000',
+  BASE_URL: 'https://nft-frame.vercel.app',
   RPC_NODE_URL:
     'https://rinkeby.infura.io/v3/f413740588cc49c78bd1ced2f2bdd24bs',
   NETWORK_ID: 4,
