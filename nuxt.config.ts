@@ -28,6 +28,7 @@ export default {
   plugins: [
     { src: '~plugins/snackbar', ssr: false },
     { src: '~plugins/ethereum', ssr: false },
+    { src: '~plugins/walletConnect', ssr: false },
   ],
   components: true,
   buildModules: ['@nuxt/typescript-build'],

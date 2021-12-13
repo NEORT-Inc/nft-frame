@@ -41,23 +41,13 @@ import { Art, GAEventPage, MediaType } from '~/types/dto'
     ArtMedia,
   },
 })
-export default class TopPage extends Vue {
+export default class FramePage extends Vue {
   private static MOUSE_VISIBLE_DURATION = 2 * 1000
 
   private slideShowTimer: any = null
   private cursorTimer: any | null = null
   private shouldHideCursor: boolean = true
   private slideShowDuration: number = 3 * 60 * 1000
-
-  @Watch('currentPlaylistId')
-  onCurrentPlaylistIdChanged(newValue: string) {
-    if (newValue) {
-      this.$store.dispatch(
-        'firebase/analytics/sendPlaylistChangedEvent',
-        newValue
-      )
-    }
-  }
 
   @Watch('currentArt')
   onCurrentArtChanged(newValue: Art | null) {
@@ -107,19 +97,13 @@ export default class TopPage extends Vue {
     this.clearCursorTimer()
     this.cursorTimer = setTimeout(() => {
       this.shouldHideCursor = true
-    }, TopPage.MOUSE_VISIBLE_DURATION)
+    }, FramePage.MOUSE_VISIBLE_DURATION)
   }
 
   private changeArt() {
     let next = this.currentIndex + 1
     if (next > this.arts.length - 1) {
       next = 0
-    }
-
-    try {
-      this.$store.dispatch('firebase/analytics/sendArtChangedEvent')
-    } catch (e) {
-      console.log(e)
     }
 
     this.$fire.firestore

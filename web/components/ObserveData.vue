@@ -16,7 +16,6 @@ import { DAILY_PLAYLIST } from '~/types/dto'
 })
 export default class ObserveData extends Vue {
   private functionForObserveUserPlaylistUnsubscribe: any = null
-  private functionForObserveDailyPlaylistUnsubscribe: any = null
   private functionForObserveUserUnsubscribe: any = null
 
   @Watch('userId')
@@ -38,13 +37,7 @@ export default class ObserveData extends Vue {
   }
 
   private observeArts() {
-    if (this.isDailyPlaylist) {
-      this.unsubscribeUserPlaylist()
-      this.observeDailyPlaylist()
-    } else {
-      this.unsubscribeDailyPlaylist()
-      this.observeUserPlaylist()
-    }
+    this.observeUserPlaylist()
   }
 
   private observeUser() {
@@ -90,44 +83,6 @@ export default class ObserveData extends Vue {
     }
   }
 
-  private observeDailyPlaylist() {
-    this.unsubscribeDailyPlaylist()
-    this.functionForObserveDailyPlaylistUnsubscribe = this.$fire.firestore
-      .collection('curations')
-      .doc('daily')
-      .collection('playlists')
-      .onSnapshot((snapshot: QuerySnapshot<DocumentData>) => {
-        if (!snapshot.empty) {
-          const index = snapshot.docs.length - 1
-          const date = snapshot.docs[index].id
-          // date
-          console.log(date)
-          const playlistRef = snapshot.docs[index].data()
-
-          playlistRef.playlist.get().then((item) => {
-            console.log(item.data().name)
-            this.$store.dispatch(
-              'playlist/setCurrentPlaylistName',
-              item.data().name
-            )
-          })
-
-          playlistRef.playlist
-            .collection('arts')
-            .orderBy('createdAt', 'desc')
-            .onSnapshot((query: QuerySnapshot<DocumentData>) => {
-              this.updateArts(query)
-            })
-        }
-      })
-  }
-
-  private unsubscribeDailyPlaylist() {
-    if (this.functionForObserveDailyPlaylistUnsubscribe) {
-      this.functionForObserveDailyPlaylistUnsubscribe()
-    }
-  }
-
   private unsubscribeUserPlaylist() {
     if (this.functionForObserveUserPlaylistUnsubscribe) {
       this.functionForObserveUserPlaylistUnsubscribe()
@@ -164,10 +119,6 @@ export default class ObserveData extends Vue {
 
   private get currentPlaylistId(): string {
     return this.$store.state.playlist.currentPlaylistId
-  }
-
-  private get isDailyPlaylist(): boolean {
-    return this.$store.getters['playlist/isDailyPlaylist']()
   }
 }
 </script>

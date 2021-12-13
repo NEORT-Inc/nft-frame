@@ -2,15 +2,17 @@
   <div>
     <div>
       <Nuxt />
+      <WalletConnectionObserver />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import WalletConnectionObserver from '~/components/WalletConnectionObserver.vue'
 
 @Component({
-  components: {},
+  components: { WalletConnectionObserver },
 })
 export default class extends Vue {}
 </script>
