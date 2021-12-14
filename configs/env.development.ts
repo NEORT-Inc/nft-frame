@@ -1,7 +1,10 @@
 export const ENV_DEV = {
   PROJECT_ENV: process.env.PROJECT_ENV || '',
   APP_NAME: 'NFT Frame dev',
-  BASE_URL: 'http://localhost:3000',
+  BASE_URL: 'https://nft-frame.vercel.app',
+  RPC_NODE_URL: 'https://rinkeby.infura.io/v3/f413740588cc49c78bd1ced2f2bdd24b',
+  NETWORK_ID: 4,
+
   // Firebase
   API_KEY: 'AIzaSyCwgR7oNlg_83Y5EgmHDnV4Y2LDwcn927s',
   AUTH_DOMAIN: 'nft-frame-dev.firebaseapp.com',

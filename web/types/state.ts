@@ -1,4 +1,4 @@
-import { Art, FrameSignInInfo, Playlist } from '~/types/dto'
+import { Art2, Art, FrameSignInInfo, Playlist } from '~/types/dto'
 
 export interface FirebaseAuthState {
   loading: boolean
@@ -39,4 +39,15 @@ export interface PlaylistState {
   currentPlaylistId: string
   currentPlaylistName: string
   playlists: Playlist[]
+}
+
+export interface WalletState {
+  address: string
+  networkId: number
+  isWalletConnect: boolean
+  walletConnectProviderId: number
+}
+
+export interface ArtsState {
+  items: Art2[]
 }

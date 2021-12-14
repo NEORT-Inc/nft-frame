@@ -1,3 +1,11 @@
+/* eslint-disable camelcase */
+export interface Art2 {
+  id: number
+  name: string
+  animation_url: string
+  image_url: string
+}
+
 export interface Art {
   id: string
   media: string
@@ -6,6 +14,11 @@ export interface Art {
   siteFavIconUrl: string
   siteUrl: string
   createdAt: number
+}
+
+export interface Media {
+  src: string
+  type: MediaType
 }
 
 export interface Playlist {

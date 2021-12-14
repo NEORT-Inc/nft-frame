@@ -7,12 +7,18 @@ export const fileUtil = {
     const ext = this.getExt(url)
     return ext === 'mp4'
   },
+  maybeHTML(url: string): boolean {
+    const ext = this.getExt(url)
+    return !!url && ext === ''
+  },
   getExt(url: string): string {
-    const name = (url.split('.').pop() || '').toLowerCase()
-    if (name.includes('?')) {
-      return name.substring(0, name.indexOf('?'))
-    } else {
-      return name
+    let ext = (url.split('.').pop() || '').toLowerCase()
+    if (ext.includes('?')) {
+      ext = ext.substring(0, ext.indexOf('?'))
     }
+    if (ext.length > 4) {
+      return ''
+    }
+    return ext
   },
 }
