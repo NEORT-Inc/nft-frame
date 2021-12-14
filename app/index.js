@@ -4,7 +4,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 let mainWindow, onlineStatusWindow
 let isNowStandbyView = false
 
-const ENDPOINT_PRD = 'https://nft.page'
+const ENDPOINT_PRD = 'https://nft-frame.vercel.app'
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -53,8 +53,7 @@ const getEndpoint = () => {
   if (process.env.NODE_ENV === 'local') {
     return 'http:localhost:3000'
   } else {
-    // return ENDPOINT_PRD
-    return 'https://dev.nft.page'
+    return ENDPOINT_PRD
   }
 }
 
