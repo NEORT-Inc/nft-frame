@@ -4,6 +4,7 @@ export const ENV_DEV = {
   BASE_URL: 'https://nft-frame.vercel.app',
   RPC_NODE_URL: 'https://rinkeby.infura.io/v3/f413740588cc49c78bd1ced2f2bdd24b',
   NETWORK_ID: 4,
+  OPENSEA_API_ENDPOINT: 'https://testnets-api.opensea.io',
 
   // Firebase
   API_KEY: 'AIzaSyCwgR7oNlg_83Y5EgmHDnV4Y2LDwcn927s',
