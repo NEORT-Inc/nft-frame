@@ -4,9 +4,9 @@
 
     <div v-if="isSignedIn">
       <ImageView
-        v-if="currentArt && isImage"
+        v-if="currentArt && !isIframe && currentArt.image"
         class="overlay"
-        :url="currentArt.media"
+        :url="currentArt.image"
       />
       <ArtMedia
         v-if="currentArt"
@@ -152,8 +152,8 @@ export default class FramePage extends Vue {
     return this.$store.state.playlist.currentPlaylistId
   }
 
-  private get isImage(): boolean {
-    return !!this.currentArt && this.currentArt.mediaType === MediaType.IMG
+  private get isIframe(): boolean {
+    return !!this.currentArt && this.currentArt.mediaType === MediaType.IFRAME
   }
 }
 </script>

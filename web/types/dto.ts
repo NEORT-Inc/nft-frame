@@ -10,6 +10,7 @@ export interface Art {
   id: string
   media: string
   mediaType: MediaType
+  image: string
   siteTitle: string
   siteFavIconUrl: string
   siteUrl: string
@@ -18,6 +19,7 @@ export interface Art {
 
 export interface Media {
   src: string
+  image: string
   type: MediaType
 }
 

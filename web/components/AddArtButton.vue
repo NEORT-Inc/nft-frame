@@ -36,6 +36,7 @@ export default class AddArtButton extends Vue {
     const media: Media = {
       type: this.mediaType,
       src: url,
+      image: this.art.image_url,
     }
     this.addArt(playlist, media, this.art.name)
   }
@@ -82,6 +83,7 @@ export default class AddArtButton extends Vue {
         .set({
           media: media.src,
           mediaType: media.type,
+          image: media.image,
           title,
           createdAt: new Date().getTime(),
         })
