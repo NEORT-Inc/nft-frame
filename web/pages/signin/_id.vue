@@ -72,7 +72,7 @@ export default class FrameSignInPage extends Vue {
         email: this.email,
         password: this.password,
       })
-      this.$router.push('/detail')
+      this.$router.push('/arts')
     } catch (e) {
       console.log(e)
       this.$snackbar.error(e.message)
