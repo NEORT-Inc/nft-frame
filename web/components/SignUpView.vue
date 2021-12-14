@@ -3,7 +3,7 @@
     <h1 class="heading">Sign Up</h1>
     <p class="lead">Enjoy {{ appName }} by registration</p>
     <SignUpWithEmailView @onSignUpSucceeded="onSignUpSucceeded" />
-    <div class="signInButtonContainer">
+    <div v-if="showSignInLink" class="signInButtonContainer">
       <A class="signInButton" @onClicked="onSignInButtonClicked"
         >Already have an account?</A
       >
@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import A from '~/basics/A.vue'
 import SignUpWithEmailView from '~/components/SignUpWithEmailView.vue'
 @Component({
@@ -22,6 +22,8 @@ import SignUpWithEmailView from '~/components/SignUpWithEmailView.vue'
   },
 })
 export default class SignUpView extends Vue {
+  @Prop({ default: true }) private showSignInLink!: boolean
+
   private onSignUpSucceeded() {
     this.$emit('onSignUpSucceeded')
   }

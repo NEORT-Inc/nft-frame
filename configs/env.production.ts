@@ -4,13 +4,13 @@ export const ENV_PRD = {
   BASE_URL: 'https://nft-frame.vercel.app',
   RPC_NODE_URL: 'https://mainnet.infura.io/v3/f413740588cc49c78bd1ced2f2bdd24b',
   NETWORK_ID: 1,
-  OPENSEA_API_ENDPOINT: 'https://api.opensea.io/v1',
+  OPENSEA_API_ENDPOINT: 'https://api.opensea.io/api/v1',
 
   // Firebase
-  API_KEY: 'AIzaSyCwgR7oNlg_83Y5EgmHDnV4Y2LDwcn927s',
-  AUTH_DOMAIN: 'nft-frame-dev.firebaseapp.com',
-  PROJECT_ID: 'nft-frame-dev',
-  STORAGE_BUCKET: 'nft-frame-dev.appspot.com',
-  MESSAGING_SENDER_ID: '216110869497',
-  APP_ID: '1:216110869497:web:30ebbf1bc012fbbe856b28',
+  API_KEY: 'AIzaSyCTd9TnJChPMZLXqT6VvFTim73noePh5NY',
+  AUTH_DOMAIN: 'nft-frame.firebaseapp.com',
+  PROJECT_ID: 'nft-frame',
+  STORAGE_BUCKET: 'nft-frame.appspot.com',
+  MESSAGING_SENDER_ID: '870738802118',
+  APP_ID: '1:870738802118:web:8020e607fd69a0d173aec7',
 }

@@ -6,6 +6,7 @@
     @onCloseAreaClicked="onCloseAreaClicked"
   >
     <SignUpView
+      :show-sign-in-link="showSignInLink"
       @onSignUpSucceeded="onSignUpSucceeded"
       @onSignInButtonClicked="onSignInButtonClicked"
     />
@@ -28,6 +29,7 @@ import SignUpView from '~/components/SignUpView.vue'
 })
 export default class SignUpModal extends Vue {
   @Prop({ default: false }) private hideCloseButton!: boolean
+  @Prop({ default: true }) private showSignInLink!: boolean
 
   private get isLoading(): boolean {
     return this.$store.state.firebase.auth.loading
