@@ -1,19 +1,26 @@
 <template>
   <div class="artsPage" :class="{ sp: $device.isMobile }">
-    <OpenSeaAssetContainer />
+    <OpenSeaAssetContainer v-if="isWalletConnected" />
+    <WalletConnect v-else />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import OpenSeaAssetContainer from '~/components/OpenSeaAssetContainer.vue'
+import WalletConnect from '~/components/WalletConnect.vue'
 
 @Component({
   components: {
+    WalletConnect,
     OpenSeaAssetContainer,
   },
 })
-export default class ArtsPage extends Vue {}
+export default class ArtsPage extends Vue {
+  private get isWalletConnected(): boolean {
+    return this.$store.state.wallet.isWalletConnect
+  }
+}
 </script>
 
 <style scoped lang="stylus">

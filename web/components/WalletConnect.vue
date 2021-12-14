@@ -1,7 +1,13 @@
 <template>
   <div class="walletConnect">
     <div v-if="address">{{ address }}</div>
-    <A @onClicked="onConnectButtonClicked">Connect</A>
+    <Button
+      class="addArtButton"
+      :button-style="buttonStyle"
+      @onClicked="onConnectButtonClicked"
+    >
+      <span class="label">Connect</span>
+    </Button>
   </div>
 </template>
 
@@ -9,9 +15,11 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import A from '~/basics/A.vue'
+import Button from '~/basics/Button.vue'
+import { ButtonStyle } from '~/types/dto'
 
 @Component({
-  components: { A },
+  components: { Button, A },
 })
 export default class WalletConnect extends Vue {
   private async onConnectButtonClicked() {
@@ -29,6 +37,10 @@ export default class WalletConnect extends Vue {
 
   private get address(): string {
     return this.$store.state.wallet.address
+  }
+
+  private get buttonStyle(): ButtonStyle {
+    return ButtonStyle.FILL_BLACK
   }
 }
 </script>

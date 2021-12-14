@@ -24,6 +24,14 @@ export default class OpenSeaAssetContainer extends Vue {
       this.$snackbar.error('address is empty.')
       return
     }
+    this.fetchArts()
+  }
+
+  mounted() {
+    this.fetchArts()
+  }
+
+  private fetchArts() {
     try {
       this.$store.dispatch('arts/fetchArts')
     } catch (e) {
