@@ -28,6 +28,9 @@ export default class AddArtButton extends Vue {
     if (!this.mediaType) {
       return
     }
+    if (!window.confirm('Change art?')) {
+      return
+    }
     const playlist: Playlist = {
       id: '0',
       name: 'default',
