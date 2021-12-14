@@ -21,14 +21,20 @@
 
       <button class="submitButton" type="submit">SIGN IN</button>
     </form>
+    <div class="signUpButtonContainer">
+      <A class="signUpButton" @onClicked="onSignUpButtonClicked">For sign-up</A>
+    </div>
+    <SignUpModal v-if="shouldShowSignUpModel" :show-sign-in-link="false" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
+import SignUpModal from '~/components/SignUpModal.vue'
+import A from '~/basics/A.vue'
 
 @Component({
-  components: {},
+  components: { A, SignUpModal },
 })
 export default class FrameSignInPage extends Vue {
   private email: string = ''
@@ -50,6 +56,10 @@ export default class FrameSignInPage extends Vue {
 
   beforeDestroy() {
     this.$store.dispatch('frame/signIn/clear', this.tempId)
+  }
+
+  private onSignUpButtonClicked() {
+    this.$store.dispatch('modal/signUpModal/open')
   }
 
   private async onSubmitForm() {
@@ -84,6 +94,10 @@ export default class FrameSignInPage extends Vue {
 
   private get errorMessage(): string {
     return this.$store.state.frame.signIn.errorMessage
+  }
+
+  private get shouldShowSignUpModel(): boolean {
+    return this.$store.state.modal.signUpModal.isModalShowing
   }
 }
 </script>
@@ -129,11 +143,22 @@ export default class FrameSignInPage extends Vue {
     .submitButton
       height 40px
       display block
-      color $textOnPrimaryColor
+      color $primary_text_color
       cursor pointer
       background-color $white_fff
       border 2px $black_000 solid
       padding 0 8px
       box-sizing border-box
       margin 40px auto 0
+
+  .signUpButtonContainer
+    margin-top $margin_32
+    padding-top $padding_32
+    text-align center
+    border-top 2px solid $gray_ededed
+
+    .signUpButton
+      color $black_212121
+      font-size $font_size_14
+      font-weight $font_weight_bold
 </style>

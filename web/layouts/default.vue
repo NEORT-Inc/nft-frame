@@ -18,7 +18,8 @@ import Header from '~/components/Header.vue'
 })
 export default class extends Vue {
   private get showHeader(): boolean {
-    return this.$route.name !== 'index'
+    console.log(this.$route.name)
+    return this.$route.name !== 'index' && this.$route.name !== 'signin-id'
   }
 }
 </script>
