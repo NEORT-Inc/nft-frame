@@ -1,5 +1,6 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AppError, ErrorType } from '~/types/dto'
+import { statProvider } from '~/util/statProvider'
 
 export const getArts = async (
   axios: NuxtAxiosInstance,
@@ -15,7 +16,7 @@ export const getArts = async (
       },
     }
     const { data } = await axios.get(
-      `https://api.opensea.io/api/v1/assets`,
+      `${statProvider.openSeaApiEndpoint()}/assets`,
       config
     )
     return data
