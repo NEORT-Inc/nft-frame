@@ -2,7 +2,7 @@ export const ENV_PRD = {
   PROJECT_ENV: process.env.PROJECT_ENV || '',
   APP_NAME: 'NFT Frame',
   BASE_URL: 'https://nft-frame.vercel.app',
-  RPC_NODE_URL: 'https://infura.io/v3/f413740588cc49c78bd1ced2f2bdd24bs',
+  RPC_NODE_URL: 'https://mainnet.infura.io/v3/f413740588cc49c78bd1ced2f2bdd24b',
   NETWORK_ID: 1,
 
   // Firebase

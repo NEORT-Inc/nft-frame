@@ -2,8 +2,7 @@ export const ENV_LOCAL = {
   PROJECT_ENV: process.env.PROJECT_ENV || '',
   APP_NAME: 'NFT Frame local',
   BASE_URL: 'http://localhost:3000',
-  RPC_NODE_URL:
-    'https://rinkeby.infura.io/v3/f413740588cc49c78bd1ced2f2bdd24bs',
+  RPC_NODE_URL: 'https://rinkeby.infura.io/v3/f413740588cc49c78bd1ced2f2bdd24b',
   NETWORK_ID: 4,
 
   // Firebase
