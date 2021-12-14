@@ -26,7 +26,6 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
-import { FrameSignInInfo } from '~/types/dto'
 
 @Component({
   components: {},
@@ -81,10 +80,6 @@ export default class FrameSignInPage extends Vue {
 
   private get tempId(): string {
     return this.$route.params.id
-  }
-
-  private get frameSignInInfo(): FrameSignInInfo {
-    return this.$store.state.frame.signIn.frameSignInInfo
   }
 
   private get errorMessage(): string {

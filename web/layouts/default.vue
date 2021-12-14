@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <Header v-if="showHeader" />
       <Nuxt />
       <WalletConnectionObserver />
     </div>
@@ -10,11 +11,16 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import WalletConnectionObserver from '~/components/WalletConnectionObserver.vue'
+import Header from '~/components/Header.vue'
 
 @Component({
-  components: { WalletConnectionObserver },
+  components: { Header, WalletConnectionObserver },
 })
-export default class extends Vue {}
+export default class extends Vue {
+  private get showHeader(): boolean {
+    return this.$route.name !== 'index'
+  }
+}
 </script>
 
 <style lang="stylus">

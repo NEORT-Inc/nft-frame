@@ -1,7 +1,13 @@
 <template>
-  <div class="walletConnect">
-    <div v-if="address">{{ address }}</div>
+  <div class="walletConnectButton">
+    <div v-if="address">
+      <div>{{ address }}</div>
+      <A v-if="isWalletConnected" @onClicked="onDisconnectButtonClicked"
+        >Disconnect</A
+      >
+    </div>
     <Button
+      v-else
       class="addArtButton"
       :button-style="buttonStyle"
       @onClicked="onConnectButtonClicked"
@@ -21,7 +27,7 @@ import { ButtonStyle } from '~/types/dto'
 @Component({
   components: { Button, A },
 })
-export default class WalletConnect extends Vue {
+export default class WalletConnectButton extends Vue {
   private async onConnectButtonClicked() {
     try {
       const provider = this.getProvider()
@@ -35,12 +41,22 @@ export default class WalletConnect extends Vue {
     return this.$walletConnect.getNewProvider()
   }
 
+  private onDisconnectButtonClicked() {
+    if (this.isWalletConnected) {
+      this.getProvider().connector.killSession()
+    }
+  }
+
   private get address(): string {
     return this.$store.state.wallet.address
   }
 
   private get buttonStyle(): ButtonStyle {
     return ButtonStyle.FILL_BLACK
+  }
+
+  private get isWalletConnected(): boolean {
+    return this.$store.state.wallet.isWalletConnect
   }
 }
 </script>
