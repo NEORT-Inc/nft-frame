@@ -12,6 +12,7 @@ export const dtoProvider = {
       id,
       media: artData.media,
       mediaType: artData.mediaType,
+      image: artData.image,
       siteTitle: artData.siteTitle,
       siteFavIconUrl: artData.siteFavIconUrl,
       siteUrl: artData.siteUrl,
