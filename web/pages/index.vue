@@ -56,6 +56,14 @@ export default class FramePage extends Vue {
     }
   }
 
+  @Watch('isSignedIn')
+  onSignInStateChanged(newValue: boolean) {
+    console.log(`onSignInStateChanged: ${newValue}`)
+    if (newValue) {
+      this.observeSignOut()
+    }
+  }
+
   mounted() {
     window.addEventListener('mousemove', this.onMouseMoveHandle)
     window.addEventListener('resize', this.resizeHandle)
@@ -65,6 +73,8 @@ export default class FramePage extends Vue {
     setTimeout(() => {
       this.$store.dispatch('firebase/analytics/sendPageEvent', GAEventPage.TOP)
     }, 3000)
+
+    this.observeSignOut()
   }
 
   beforeDestroy() {
@@ -117,6 +127,12 @@ export default class FramePage extends Vue {
       .catch((error) => {
         console.error('Error updating index: ', error)
       })
+  }
+
+  private observeSignOut() {
+    if (this.isSignedIn) {
+      this.$store.dispatch('frame/signIn/observeSignOut')
+    }
   }
 
   private resizeHandle(): void {

@@ -3,6 +3,9 @@
     <div class="container">
       <div class="logoContainer"></div>
       <WalletConnectButton />
+      <div v-if="isSignedIn">
+        <A @onClicked="onSignOutButtonClicked">Sign-Out</A>
+      </div>
     </div>
   </header>
 </template>
@@ -10,11 +13,23 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import WalletConnectButton from '~/components/WalletConnectButton.vue'
+import A from '~/basics/A.vue'
 
 @Component({
-  components: { WalletConnectButton },
+  components: { A, WalletConnectButton },
 })
-export default class Header extends Vue {}
+export default class Header extends Vue {
+  private onSignOutButtonClicked() {
+    if (!window.confirm('Are you sure to sign out?')) {
+      return
+    }
+    this.$store.dispatch('frame/signIn/signOut')
+  }
+
+  private get isSignedIn(): boolean {
+    return this.$store.getters['auth/isSignedIn']()
+  }
+}
 </script>
 
 <style scoped lang="stylus">

@@ -124,6 +124,18 @@ export const actions = {
     commit('SET_EMAIL_NAME', accountName)
     await null
   },
+  async signout({ dispatch }) {
+    try {
+      const _this: any = this
+      await _this.$fire.auth.signOut()
+      await dispatch('firebase/auth/clear', null, {
+        root: true,
+      })
+      Cookies.remove(COOKIE_KEY_EMAIL_SIGNIN_INFO)
+    } catch (e) {
+      console.log(e)
+    }
+  },
   clear({ commit }) {
     commit('RESET_STORE')
   },
