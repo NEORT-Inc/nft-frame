@@ -3,11 +3,10 @@
     <div class="contentsContainer">
       <h1 class="heading">Welcome</h1>
       <div>
-        <p class="message">Enjoy collecting Digital Art on any web site.</p>
-        <ImageView url="/img/demo.gif" />
+        <p class="message">Enjoy displaying Digital Art.</p>
       </div>
       <div class="detailContainer">
-        <n-link to="/detail">Go to Detail page</n-link>
+        <n-link to="/arts">Go to arts page</n-link>
       </div>
     </div>
   </div>
@@ -15,11 +14,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import ImageView from '~/basics/ImageView.vue'
 @Component({
-  components: {
-    ImageView,
-  },
+  components: {},
 })
 export default class WelcomePage extends Vue {}
 </script>
