@@ -7,6 +7,7 @@ import DocumentData = firebase.firestore.DocumentData
 import { dtoProvider } from '~/util/dtoProvider'
 
 export const FRAME_SIGNIN_DB_COLLECTION = 'signins'
+export const FRAME_SIGNOUT_DB_COLLECTION = 'signouts'
 export const FRAME_SIGNIN_DB_ENCRYPTION_KEY = 'neort_frame_key'
 
 export const state = (): FrameSignInState => ({
@@ -56,6 +57,31 @@ export const actions = {
       })
     commit('setChildChangedCallback', childChangedCallback)
   },
+  observeSignOut({ rootState, dispatch }) {
+    const userId: string = (rootState as any).firebase.auth.id
+    if (!userId) {
+      return
+    }
+    const _this: any = this
+    _this.$fire.firestore
+      .collection(FRAME_SIGNOUT_DB_COLLECTION)
+      .doc(userId)
+      .onSnapshot((snapshot: DocumentSnapshot<DocumentData>) => {
+        const data = snapshot.data()
+        const shouldSignOut: string = data ? data.signout : false
+        if (shouldSignOut) {
+          dispatch('auth/signout', null, {
+            root: true,
+          }).then(() => {
+            try {
+              _this.$fire.firestore.collection('users').doc(userId)
+            } catch (e) {
+              console.log(e)
+            }
+          })
+        }
+      })
+  },
   async signIn(
     { commit, dispatch },
     payload: {
@@ -97,6 +123,32 @@ export const actions = {
         .collection(FRAME_SIGNIN_DB_COLLECTION)
         .doc(payload.tempId)
         .delete()
+      commit('setErrorMessage', '')
+    } catch (e) {
+      console.log(e)
+      commit('setErrorMessage', 'Failed to send data.')
+    }
+  },
+  async signOut({ commit, rootState, dispatch }) {
+    const userId: string = (rootState as any).firebase.auth.id
+    const _this: any = this
+    // Send sign-in info
+    try {
+      console.log(userId)
+      await _this.$fire.firestore
+        .collection(FRAME_SIGNOUT_DB_COLLECTION)
+        .doc(userId)
+        .set({
+          signout: true,
+        })
+      // Delete immediately
+      await _this.$fire.firestore
+        .collection(FRAME_SIGNOUT_DB_COLLECTION)
+        .doc(userId)
+        .delete()
+      await dispatch('auth/signout', null, {
+        root: true,
+      })
       commit('setErrorMessage', '')
     } catch (e) {
       console.log(e)
