@@ -1,6 +1,6 @@
 <template>
   <div class="artsPage" :class="{ sp: $device.isMobile }">
-    <SignInView v-if="!isSignedIn" @onSignInSucceeded="onSignInSucceeded" />
+    <SignInOrSignUpView v-if="!isSignedIn" />
     <OpenSeaAssetContainer v-else-if="isWalletConnected" />
   </div>
 </template>
@@ -8,21 +8,15 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import OpenSeaAssetContainer from '~/components/OpenSeaAssetContainer.vue'
-import SignInModal from '~/components/SignInModal.vue'
-import SignInView from '~/components/SignInView.vue'
+import SignInOrSignUpView from '~/components/SignInOrSignUpView.vue'
 
 @Component({
   components: {
-    SignInView,
-    SignInModal,
+    SignInOrSignUpView,
     OpenSeaAssetContainer,
   },
 })
 export default class ArtsPage extends Vue {
-  private onSignInSucceeded() {
-    console.log('succeeded.')
-  }
-
   private get isWalletConnected(): boolean {
     return this.$store.state.wallet.isWalletConnect
   }
